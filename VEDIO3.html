@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Protected Video 3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  font-family:Segoe UI, Tahoma;
+  color:#fff;
+}
+.card{
+  background:#111;
+  padding:30px;
+  border-radius:16px;
+  width:100%;
+  max-width:380px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:none;
+  margin:15px 0;
+  font-size:16px;
+}
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#e63946;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+.error{
+  margin-top:10px;
+  color:#ff6b6b;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="loginBox">
+  <h2>🔒 فيديو محمي</h2>
+  <p>أدخل كلمة المرور</p>
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="checkPassword()">تشغيل الفيديو</button>
+  <div class="error" id="error">كلمة المرور خاطئة</div>
+</div>
+
+<script>
+const CORRECT_PASSWORD = "11"; // غيرها حسب اختيارك
+const YOUTUBE_SHORTS_LINK = "https://youtube.com/shorts/yMUzBO1baCE";
+
+function checkPassword(){
+  const input = document.getElementById("password").value;
+  const error = document.getElementById("error");
+
+  if(input === CORRECT_PASSWORD){
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if(isMobile){
+      // فتح في التطبيق (Shorts app أو YouTube app)
+      window.location.href = YOUTUBE_SHORTS_LINK;
+    }else{
+      // فتح على المتصفح (Desktop)
+      window.open(YOUTUBE_SHORTS_LINK, "_blank");
+    }
+
+  }else{
+    error.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
