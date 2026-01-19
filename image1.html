@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Protected Image</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  font-family:Segoe UI, Tahoma;
+  color:#fff;
+}
+
+/* صندوق الباسورد */
+.card{
+  background:#111;
+  padding:30px;
+  border-radius:16px;
+  width:100%;
+  max-width:380px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:none;
+  margin:15px 0;
+  font-size:16px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#4361ee;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.error{
+  margin-top:10px;
+  color:#ff6b6b;
+  display:none;
+}
+
+/* الصورة */
+.image-box{
+  display:none;
+  max-width:95vw;
+  max-height:95vh;
+}
+
+.image-box img{
+  max-width:100%;
+  max-height:100%;
+  border-radius:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+</style>
+</head>
+
+<body>
+
+<!-- شاشة الباسورد -->
+<div class="card" id="loginBox">
+  <h2>🔒 صورة محمية</h2>
+  <p>أدخل كلمة المرور</p>
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="checkPassword()">عرض الصورة</button>
+  <div class="error" id="error">كلمة المرور خاطئة</div>
+</div>
+
+<!-- الصورة (ما تظهر إلا إذا صح) -->
+<div class="image-box" id="imageBox">
+  <img src="media/A4.jpg" alt="Protected Image">
+</div>
+
+<script>
+const CORRECT_PASSWORD = "11"; // ← غير الباسورد
+function checkPassword(){
+  const input = document.getElementById("password").value;
+  const error = document.getElementById("error");
+
+  if(input === CORRECT_PASSWORD){
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("imageBox").style.display = "block";
+  }else{
+    error.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
